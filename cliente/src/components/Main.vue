@@ -1,6 +1,8 @@
 <template>
   <div>
     <b-breadcrumb :items="items"></b-breadcrumb>
+    <hr>
+    <b-link :to="{name:'tercero'}">Siguiente</b-link>
   </div>
 </template>
 

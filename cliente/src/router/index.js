@@ -2,29 +2,25 @@
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
-
 Vue.use(VueRouter);
 
-
 const routes = [
+    //la ruta base
     {
         path: '/',
-        redirect: '/inicio'
+        component:()=> import('../components/LandPage.vue')
+    },
+    //las rutas asociadas a los componentes
+    {
+        path:'*',
+        component:()=> import('../components/ErrorPages/Error404.vue')
     },
     {
-        path: '/',
-        component: {
-            render(c) {
-                return c('router-view');
-            },
-        },
+        path: '/inicio',
+        component: ()=> import ('../components/Inicio.vue'),
+
+        //Los componentes que se renderizan en router-vue
         children: [
-            {
-           
-                path: '/inicio',
-                name: 'inicio',
-                component: () => import('../components/Inicio.vue')
-            },
             {
                 path: '/main',
                 name: 'main',
