@@ -11,7 +11,7 @@
             <b-navbar-nav class="ml-auto">
               <b-nav-item href="#">Inicio</b-nav-item>
               <b-nav-item href="#">Acerca de</b-nav-item>
-              <b-nav-item href="#">Contacto</b-nav-item>
+              <b-nav-item :to="{name:'formulario'}">Formulario</b-nav-item>
             </b-navbar-nav>
           </b-collapse>
         </b-navbar>
@@ -19,7 +19,7 @@
     </b-row>
 
     <b-row>
-      <b-col sm="3">
+      <b-col sm="3" md="4" lg="4" >
         <b-sidebar
           z-index="-1"
           id="sidebar"
@@ -49,10 +49,8 @@
         </b-sidebar>
       </b-col>
 
-      <b-col>
-
-        <router-view> </router-view>
-      
+      <b-col >
+        <router-view/>
       </b-col>
     </b-row>
   </b-container>

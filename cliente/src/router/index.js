@@ -10,10 +10,15 @@ const routes = [
         path: '/',
         component:()=> import('../components/LandPage.vue')
     },
+    {
+        path: '/formulario',
+        name:'formulario',
+        component: () => import('../components/Formulario.vue')
+    },
     //las rutas asociadas a los componentes
     {
         path:'*',
-        component:()=> import('../components/ErrorPages/Error404.vue')
+        component:()=> import('../views/ErrorPages/Error404.vue')
     },
     {
         path: '/inicio',
@@ -30,7 +35,8 @@ const routes = [
                 path: '/tercero',
                 name: 'tercero',
                 component: () => import('../components/Tercero.vue')
-            }
+            },
+            
         ]
     }
 ]

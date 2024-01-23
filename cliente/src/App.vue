@@ -2,6 +2,7 @@
 </script>
 
 <template>
+  <!-- Router view base -->
   <router-view/>
 </template>
 
