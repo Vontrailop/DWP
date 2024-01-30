@@ -3,7 +3,7 @@
     <b-input placeholder="apunta algo" v-model="filtro"></b-input>
     <b-table
       id="my-table"
-      :items="personas"
+      :items="obtenerPersonas"
       :per-page="perPage"
       :current-page="currentPage"
       :fields="fields"
@@ -30,6 +30,9 @@
 </template>
 
 <script>
+//Este ejemplo hace uso del objeto ctx para manipular el paginador de la tabla y enviarlo mediante el servicio de
+//axios. Aquí solo falta asociar el filtro con el servicio
+
 import personaService from "../services/Persona"; // Ajusta la ruta según tu estructura de archivos
 
 export default {
@@ -39,42 +42,35 @@ export default {
       sortBy: "name",
       sortDesc: false,
       perPage: 5,
-      rows:0,
+      rows: 0,
       currentPage: 1,
       personas: [],
       fields: [
         { key: "name", label: "Nombre", sortable: true },
         { key: "firstname", label: "Apellido Paterno", sortable: true },
-        { key: "lastname", label: "Apellido Materno", sortable: true },
-        { key: "address", label: "Direccion", sortable: true },
-        { key: "birthday", label: "Fech. Nac.", sortable: true },
-        { key: "email", label: "Email", sortable: true },
-        { key: "email", label: "Email", sortable: true },
       ],
     };
   },
-  mounted() {
-    this.obtenerPersonas();
-  },
   methods: {
-    async obtenerPersonas() {
+    async obtenerPersonas(ctx) {
+      console.log(ctx);
       try {
         const data = await personaService.obtenerPersonasPaginadas(
-          parseInt(this.currentPage),
-          parseInt(this.perPage),
-          this.sortBy
+          parseInt(ctx.currentPage)-1,
+          parseInt(ctx.perPage),
+          ctx.sortBy
         );
-        this.personas = data.content;
-        this.rows = this.personas.length;
+        this.rows = data.totalElements;
+        return data.content;
       } catch (error) {
         console.error(error);
         // Manejar errores (puedes mostrar un mensaje de error al usuario, por ejemplo)
       }
     },
-    onFiltered(filteredItems){
+    onFiltered(filteredItems) {
       this.currentPage = 1;
       this.rows = filteredItems.length;
-    }
+    },
   },
 };
 </script>
