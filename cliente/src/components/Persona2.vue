@@ -56,7 +56,8 @@ export default {
       console.log(ctx);
       try {
         const data = await personaService.obtenerPersonasPaginadas(
-          parseInt(ctx.currentPage)-1,
+          parseInt(ctx.currentPage)-1,//aquí le ponemos -1 porque el paginador en back inicia desde 0
+                                      //en cambio aquí (bootstrap) lo inicia desde el 1
           parseInt(ctx.perPage),
           ctx.sortBy
         );

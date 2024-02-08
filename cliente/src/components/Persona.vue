@@ -65,7 +65,7 @@ export default {
           this.sortBy
         );
         this.personas = data.content;
-        this.rows = this.personas.length;
+        this.rows = data.totalElements;
       } catch (error) {
         console.error(error);
         // Manejar errores (puedes mostrar un mensaje de error al usuario, por ejemplo)
